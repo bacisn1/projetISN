@@ -1,1 +1,2 @@
-Jeux en colonne avec chute d'objet à éviter
+Jeu vertical avec chute d'objet vertical et déplacement du personnage horizontal. 
+Le but est de déplacer le personnage de gauche à droite pour éviter les objets en chute . 
