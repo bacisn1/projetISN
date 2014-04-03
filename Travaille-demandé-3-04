@@ -1,0 +1,38 @@
+class eleve():
+    nom =""
+    classe = ""
+    etat= True
+    
+def etat(liste):
+    nb=liste.count(1)
+    return nb
+            
+def appel_present(liste):
+    if eleve2.etat == 1 :
+        print "l'élève",eleve2.nom,"est présent(e)"
+    else :
+        print "L'élève",eleve2.nom,"est absent(e)" 
+    
+    
+eleve1=eleve()
+eleve1.nom = "Jean"
+eleve1.classe ="TS6"
+eleve1.etat = 1
+print "Nom :",eleve1.nom,",Classe:",eleve1.classe,",Etat:",eleve1.etat
+
+eleve2=eleve()
+eleve2.nom= "Julie"
+eleve2.classe="TS7"
+eleve2.etat= 0
+
+print "Nom :",eleve2.nom,",Classe",eleve2.classe,",Etat",eleve2.etat
+
+liste =[]
+liste.append(eleve1.etat)
+liste.append(eleve2.etat)
+
+print "Il y a ",etat(liste),"élève(s) présents"
+
+
+        
+print appel_present(liste)
