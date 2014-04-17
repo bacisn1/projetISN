@@ -1,7 +1,7 @@
 import pygame
 
-if event.type == KEYDOWN: #évenement du clavier
-     if event.key == K_SPACE:
+if event.type == pygame.KEYDOWN: #évenement du clavier
+     if event.key == pygame.K_SPACE:
           #action affectée si l'on appuie sur la barre espace
-     if event.key == K_RETURN:
+     if event.key == pygame.K_RETURN:
           #action affectée si l'on appuie sur la touche entrée
