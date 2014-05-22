@@ -1,0 +1,77 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Apr 17 17:07:46 2014
+
+@author: isn
+"""
+
+import pygame
+import random
+
+BLACK=(0,0,0)
+WHITE=(255,255,255)
+
+class Block(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+       # self.image = pygame.Surface([width, height])
+      #  self.image.fill(color)
+      
+        self.image = pygame.image.load("bombes.png")
+      #  self.rect = self.image.get_rect()      
+      # self.image.set_colorkey(WHITE)
+        self.rect = self.image.get_rect()
+    def reset_pos(self):
+        self.rect.y = random.randrange(-300,-20)
+        self.rect.x = random.randrange(0, screen_width)
+        
+    def update(self):
+        self.rect.y +=1
+        if self.rect.y > 620:
+            self.reset_pos()
+        
+    
+pygame.init()
+
+screen_width = 438
+screen_height = 640
+screen = pygame.display.set_mode([screen_width, screen_height])
+
+background_position=[0,0]
+background_image=pygame.image.load("ciel2.png").convert()
+
+block_list = pygame.sprite.Group()
+all_sprites_list = pygame.sprite.Group()
+
+for i in range(40):
+    block = Block()
+    block.rect.x = random.randrange(screen_width)
+    block.rect.y = random.randrange(screen_height)
+    
+    block_list.add(block)
+    all_sprites_list.add(block)
+
+done = False
+
+clock = pygame.time.Clock()
+
+while not done:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+        
+   # screen.fill(WHITE)
+    
+    screen.blit(background_image, background_position)    
+    
+    all_sprites_list.update()
+    
+    block.reset_pos()
+    
+    all_sprites_list.draw(screen)
+
+    clock.tick(60)
+
+    pygame.display.flip()
+
+pygame.quit()
