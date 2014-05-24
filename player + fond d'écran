@@ -1,0 +1,63 @@
+import pygame
+import random
+
+BLACK=(0,0,0)
+WHITE=(255,255,255)
+RED=(255,0,0)
+
+class Block(pygame.sprite.Sprite):
+    def __init__(self,color,width,height):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface([width, height])
+        self.rect = self.image.get_rect()
+        self.image=pygame.image.load("perso.png")
+        self.image.set_colorkey(WHITE)
+        self.rect=self.image.get_rect()
+        
+pygame.init()
+
+screen_width = 438
+screen_height = 640
+screen = pygame.display.set_mode([screen_width, screen_height])
+
+background_position=[0,0]
+background_image=pygame.image.load("ciel.png")
+
+block_list = pygame.sprite.Group()
+
+for i in range(1):
+    block=Block("perso.png",19,32)
+    block.rect.x = 219
+    block.rect.y = 610
+    
+block_list.add(block)
+
+clock = pygame.time.Clock()
+
+done = False
+
+while not done:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            done = True
+    
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_LEFT:
+            block.rect.x -= 6
+        if event.key == pygame.K_RIGHT:
+            block.rect.x += 6
+    
+    if block.rect.x > 435: 
+        block.rect.x=12
+    if block.rect.x < 2:
+        block.rect.x=434
+    
+    screen.blit(background_image, background_position) 
+    
+    block_list.draw(screen)
+
+    clock.tick(60)
+
+    pygame.display.flip()
+
+pygame.quit()
